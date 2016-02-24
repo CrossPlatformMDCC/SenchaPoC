@@ -117,20 +117,35 @@ h1 {
 #btnShare, #btnImg{
     background-color: #B22222;
     color: #ffffff;
-    width: 50%;
+    width: 45%;
 }
 
 #btnPhoto{
     background-color: #4682B4;
     color: #fff;
+	width: 91%;
 }
 
 #reset{
-    background-color: gray;
-    color: #fff;
+    background-color: #ffdead;
+    color: #000000;
+	width: 91%;
 }
 
 #btnUploadImg{
     background-color: gray;
     color: #fff;
+	width: 91%;
+}
+
+#btnSepia, #btnGrayscale, #btnInvertColors{
+    background-color: #ffdead;
+    color: #000000;
+	width: 29.5%;
+}
+
+#btnAcc{
+    background-color: #dddddd;
+    color: #000000;
+	width: 91%;
 }

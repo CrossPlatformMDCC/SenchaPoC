@@ -25,21 +25,20 @@ if(g){if(!k(g)||k(j))continue;b.theme||(b.theme={});b.theme.name||(b.theme.name=
 		</div-->
 
 		<!-- Buttons -->
-		<div>
-			<button onclick="capturePhoto();" id="btnPhoto">CAPTURE PHOTO</button> <br>
+		<div align="center">
+			<button onclick="capturePhoto();" id="btnPhoto">Take Photo</button>
 			<!--button onclick="getPhoto(Camera.PictureSourceType.PHOTOLIBRARY);">From Photo Library</button><br-->
 			<!--button onclick="capturePosition();">Capture Position</button> <br-->
-			<button onclick="startWatch();">ENABLE ACCELEROMETER</button> <br>
-			<button onclick="shareLocation();" id="btnShare">SHARE LOCATION</button> <br> <br>
+			<button onclick="startWatch();" id="btnAcc">Enable Acc</button>
 		</div>
 
 		<!-- Image -->
+		<br>
 		<div>
-			<b>Image: <span id="nImage"> </span> </b>
+			<!--b>Image: <span id="nImage"> </span> </b-->
 			<div align="center"><img style="display:none;width:320px;height:180px;" id="smallImage" src="" /></div>
 			<!--img style="display:none;width:320px;height:180px;" id="largeImage" src="" /-->
 		</div>
-		<br>
 		
 		<!-- Geolocation Data -->
 		<!--p id="geolocation">Finding geolocation...</p-->
@@ -48,26 +47,34 @@ if(g){if(!k(g)||k(j))continue;b.theme||(b.theme={});b.theme.name||(b.theme.name=
 		<!--div id="accelerometer">Waiting for accelerometer...</div-->
 		
 		<!-- Image Filters -->
-		<button onclick="reset();" id="reset">CHOOSE PHOTO</button><br />
+		<br>
+		<div>
+			<button onclick="reset();" id="reset">Use Photo</button>
+		</div>
 		<!--button onclick="window.plugins.socialsharing.share('Message and image', null, canvas.toDataURL(), null)" id="btnImg">SHARE IMAGE</button> <br-->
 		<!--button onclick="window.plugins.socialsharing.share('Message and image', null, canvas.toDataURL(), null)">SHARE IMAGE</button> <br-->
-		<button onclick="window.plugins.socialsharing.share('Message and image', 'blablabla', canvas.toDataURL(), 'www.google.com')" id="btnImg">SHARE IMAGE</button> <br>
+		
+		<div>
+			<button onclick="applySepiaFilter();" id="btnSepia">Sepia</button>
+			<button onclick="applyGrayscaleFilter();" id="btnGrayscale">Mono</button>
+			<button onclick="applyInvertedColorFilter();" id="btnInvertColors">Invert</button>
+			<!--button onclick="applyRgbAjust();" id="rgbajust">RGB Ajust</button><br /-->
+		</div>
+		
+		<br>
+		<div>
+			<button onclick="window.plugins.socialsharing.share('Image sharing', 'Teste', canvas.toDataURL(), 'www.google.com')" id="btnImg">G+ Image</button>
+			<button onclick="shareLocation();" id="btnShare">G+ Location</button>
+		</div>
 		
 		<!--div id="canvasDiv" style="position:relative; width:320px; height:180px" align="center">
 			<canvas id="myCanvas" width="320" height="180" style="position:absolute; left:0px; top:0px; z-index: 1;"></canvas>
 			<canvas id="myCanvasOutline" width="320" height="180" style="position:absolute; left:0px; top:0px; z-index: 2;"></canvas>
 		</div-->
 		
-		<div>
-			<button onclick="applyGrayscaleFilter();" id="btnGrayscale">Grayscale</button>
-			<button onclick="applySepiaFilter();" id="btnSepia">Sepia</button>
-			<button onclick="applyInvertedColorFilter();" id="btnInvertColors">Invert Colors</button>
-			<!--button onclick="applyRgbAjust();" id="rgbajust">RGB Ajust</button><br /-->
-		</div>
-		
 		<br>
 		<div>
-			<button onclick="sendImageToServer();" id="btnUploadImg">SEND IMAGE</button>
+			<button onclick="sendImageToServer();" id="btnUploadImg">Send Photo</button>
 		</div>
 		
 	</div>
