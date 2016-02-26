@@ -283,12 +283,12 @@ this file in most cases.
     <target name="sass" 
             depends="init" 
             description="Builds the Sass files using Compass.">
-        <x-ant-call unless="skip.sass">
+        <!--x-ant-call unless="skip.sass">
             <target name="-before-sass"/>
             <target name="-sass"/>
             <target name="-after-sass"/>
             <target name="refresh"/>
-        </x-ant-call>
+        </x-ant-call-->
     </target>
 
     <!--

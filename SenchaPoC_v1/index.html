@@ -20,66 +20,37 @@
 			<p class="event received">Device is Ready</p>
 		</div-->
 
-		<!-- Buttons -->
-		<div align="center">
-			<button onclick="capturePhoto();" id="btnPhoto">Take Photo</button>
-			<!--button onclick="getPhoto(Camera.PictureSourceType.PHOTOLIBRARY);">From Photo Library</button><br-->
-			<!--button onclick="capturePosition();">Capture Position</button> <br-->
-			<button onclick="startWatch();" id="btnAcc">Enable Acc</button>
-		</div>
+		<!-- Camera Button -->
+		<button onclick="capturePhoto();" id="btnPhoto">Take Photo</button> <br>
+		<!--button onclick="getPhoto(Camera.PictureSourceType.PHOTOLIBRARY);">From Photo Library</button><br-->
+		
+		<!-- Accelerator Button -->
+		<button onclick="startWatch();" id="btnAcc">Enable Acc</button> <br> <br>
 
 		<!-- Image -->
-		<br>
 		<div>
 			<!--b>Image: <span id="nImage"> </span> </b-->
-			<div align="center"><img style="display:none;width:320px;height:180px;" id="smallImage" src="" /></div>
-			<!--img style="display:none;width:320px;height:180px;" id="largeImage" src="" /-->
-		</div>
+			<div align="center"><img style="display:none;width:320px;height:180px;margin-bottom=-2%;" id="smallImage" src="" /></div>
+		</div> <br>
 		
-		<!-- Geolocation Data -->
-		<!--p id="geolocation">Finding geolocation...</p-->
+		<!-- Image Filters Buttons -->
+		<button onclick="reset();" id="reset">Use Photo</button> <br>
 		
-		<!-- Accelerometer Data -->
-		<!--div id="accelerometer">Waiting for accelerometer...</div-->
+		<button onclick="applySepiaFilter();" id="btnSepia">Sepia</button>
+		<button onclick="applyGrayscaleFilter();" id="btnGrayscale">Mono</button>
+		<button onclick="applyInvertedColorFilter();" id="btnInvertColors">Invert</button> <br> <br>
 		
-		<!-- Image Filters -->
-		<br>
-		<div>
-			<button onclick="reset();" id="reset">Use Photo</button>
-		</div>
-		<!--button onclick="window.plugins.socialsharing.share('Message and image', null, canvas.toDataURL(), null)" id="btnImg">SHARE IMAGE</button> <br-->
-		<!--button onclick="window.plugins.socialsharing.share('Message and image', null, canvas.toDataURL(), null)">SHARE IMAGE</button> <br-->
+		<!-- Sharing Buttons -->
+		<button onclick="window.plugins.socialsharing.share('Image sharing', 'Teste', canvas.toDataURL(), 'www.google.com')" id="btnImg">G+ Image</button>
+		<button onclick="shareLocation();" id="btnShare">G+ Location</button> <br> <br>
 		
-		<div>
-			<button onclick="applySepiaFilter();" id="btnSepia">Sepia</button>
-			<button onclick="applyGrayscaleFilter();" id="btnGrayscale">Mono</button>
-			<button onclick="applyInvertedColorFilter();" id="btnInvertColors">Invert</button>
-			<!--button onclick="applyRgbAjust();" id="rgbajust">RGB Ajust</button><br /-->
-		</div>
-		
-		<br>
-		<div>
-			<button onclick="window.plugins.socialsharing.share('Image sharing', 'Teste', canvas.toDataURL(), 'www.google.com')" id="btnImg">G+ Image</button>
-			<button onclick="shareLocation();" id="btnShare">G+ Location</button>
-		</div>
-		
-		<!--div id="canvasDiv" style="position:relative; width:320px; height:180px" align="center">
-			<canvas id="myCanvas" width="320" height="180" style="position:absolute; left:0px; top:0px; z-index: 1;"></canvas>
-			<canvas id="myCanvasOutline" width="320" height="180" style="position:absolute; left:0px; top:0px; z-index: 2;"></canvas>
-		</div-->
-		
-		<br>
-		<div>
-			<button onclick="sendImageToServer();" id="btnUploadImg">Send Photo</button>
-		</div>
+		<!-- Upload Image to Server Button -->
+		<button onclick="sendImageToServer();" id="btnUploadImg">Send Photo</button>
 		
 	</div>
 	
 	<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
 	<script type="text/javascript" charset="utf-8" src="js/index.js"></script>
-	<script type="text/javascript" charset="utf-8" src="js/filterous.js"></script>
-	<script type="text/javascript" charset="utf-8" src="js/filterousEffects.js"></script>
-	<script type="text/javascript" src="js/rgb.js"></script>
 	<script type="text/javascript" src="js/SocialSharing.js"></script>
 	
 	<script type="text/javascript" charset="utf-8">
@@ -97,9 +68,7 @@
 	
 	// Variables of image filter functionality
 	var canvas,
-		canvasOutline,
 		context,
-		contextOutline,
 		image,
 		imgObj;
 		
@@ -175,19 +144,6 @@
 	  photoIndex = photos.length;
 	  //$("#nImage").html(photoIndex + " de " + photos.length);
 	  
-	  // Teste - incluir imageData no canvas ja - se der certo, fazer reset(imageData);
-	  //canvas = document.getElementById('myCanvas');
-	  //context = canvas.getContext("2d");
-	  //image = document.getElementById('smallImage');
-	  //var imgteste = document.createElement("imgteste");
-	  //imgteste.src = imageData;
-	  //document.body.appendChild(imgteste);
-	  
-	  //var imgc = new Image();
-      //imgc.src = imageData;
-
-	  //context.drawImage(imgc, 0, 0, canvas.width, canvas.height); // reduce the image
-	  
     }
 
     // Called when a photo is successfully retrieved
@@ -210,8 +166,6 @@
       largeImage.src = imageURI;
     }
 	
-	// A button will call this function
-    //
     function capturePosition() {
 	  navigator.geolocation.getCurrentPosition(onSuccess, onError);
     }
@@ -224,16 +178,12 @@
         destinationType: Camera.DestinationType.FILE_URI });
     }
 
-    // A button will call this function
-    //
     function capturePhotoEdit() {
       // Take picture using device camera, allow edit, and retrieve image as base64-encoded string  
       navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 20, allowEdit: true,
         destinationType: destinationType.FILE_URI });
     }
 
-    // A button will call this function
-    //
     function getPhoto(source) {
       // Retrieve image file location from specified source
       navigator.camera.getPicture(onPhotoURISuccess, onFail, { quality: 50, 
@@ -402,7 +352,6 @@
 	//
 	function reset() {
 		
-		// Layer 1 - Layer with the image
 		//canvas = document.getElementById('myCanvas');
 		image = document.getElementById('smallImage');
 		canvas.width = image.width*2;
@@ -411,21 +360,13 @@
 		
 		context.drawImage(image, 0, 0, canvas.width, canvas.height); // reduce the image
 		
-		// Layer 2 - Layer with the image outline
-		/*canvasOutline = document.getElementById('myCanvasOutline');
-		contextOutline = canvasOutline.getContext("2d");
-		
-		contextOutline.rect(0, 0, canvas.width, canvas.height);
-		contextOutline.lineWidth = 6;           // set outline width
-		contextOutline.strokeStyle = "#808080"; // set outline color
-		contextOutline.stroke();                // draw the outline*/
-		
 	}
 	
 	// sendImageToServer: Send image to the server for testing
 	//
 	function sendImageToServer() {
 		console.log("method sendImageToServer() called - added by cris");
+		console.log("teste");
 		
 		function win(r) {
 			console.log("Code = " + r.responseCode);
@@ -470,14 +411,6 @@
 		ft.upload(fileURL, uri, win, fail, options);
 		
 	}
-	
-	// Teste incluir plugin Filterous
-	/*function applyRgbAjust() {
-		image = document.getElementById('smallImage');
-		var f = new Filterous(image);
-		f.filterImage('brightness', 50);
-		f.render();
-	}*/
 	
     </script>
 	
