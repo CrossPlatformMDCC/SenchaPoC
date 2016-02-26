@@ -7,9 +7,9 @@
                 "config": {
                     // Uncomment the line below and add the platforms you wish to build for
 					//"platforms": "ios android",
-					"platforms": "android",
+					//"platforms": "android",
 					
-					//"platforms": "ios",
+					"platforms": "ios",
                     "id": "com.ufc.HelloWorld",
                     "name": "HelloWorld"
                 }

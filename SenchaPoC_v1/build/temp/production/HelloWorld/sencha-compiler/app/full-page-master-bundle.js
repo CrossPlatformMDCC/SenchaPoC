@@ -1,2 +1,2 @@
 // @tag full-page
-// @require C:\Users\Samsung\RepositorySencha\SenchaPoC_v1\app.js
+// @require /Users/Cristiane/Documents/reposenchapoc_v2/SenchaPoC/SenchaPoC_v1/app.js
